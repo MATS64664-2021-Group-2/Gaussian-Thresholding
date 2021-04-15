@@ -13,7 +13,7 @@ while i <= 16: #16 images, i values up to and including 16
     
     clean_image_skimage = morphology.remove_small_holes(image_threshold, area_threshold = 50, connectivity = 2) #Conduct area-based thresholding to remove isolated pixels below a specified area threshold
     clean_image_skimage_points = morphology.remove_small_objects(clean_image_skimage, min_size = 1000, connectivity = 2) #Conduct length-based thresholding to remove any leftover pixels from the previous thresholding
-    clean_image_skimage = np.uint8(clean_image_skimage) #Convert from boolean to uint8, otherwise opencv cannot process the array
+    clean_image_skimage = np.uint8(clean_image_skimage_points) #Convert from boolean to uint8, otherwise opencv cannot process the array
     
     
     element_open = cv2.getStructuringElement(cv2.MORPH_RECT, (2,2)) #Define the structure size for the erosion treatment
