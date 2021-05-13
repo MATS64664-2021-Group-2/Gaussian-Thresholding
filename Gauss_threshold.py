@@ -12,20 +12,24 @@ while i <= 16: #16 images, i values up to and including 16
     imagelist.append(image_threshold) #Add image to the image list
     
     clean_image_skimage = morphology.remove_small_holes(image_threshold, area_threshold = 50, connectivity = 2) #Conduct area-based thresholding to remove isolated pixels below a specified area threshold
-    clean_image_skimage_points = morphology.remove_small_objects(clean_image_skimage, min_size = 1000, connectivity = 2) #Conduct length-based thresholding to remove any leftover pixels from the previous thresholding
-    clean_image_skimage = np.uint8(clean_image_skimage_points) #Convert from boolean to uint8, otherwise opencv cannot process the array
+    
+    clean_image_skimage = np.uint8(clean_image_skimage) #Convert from boolean to uint8, otherwise opencv cannot process the array
     
     
     element_open = cv2.getStructuringElement(cv2.MORPH_RECT, (2,2)) #Define the structure size for the erosion treatment
     
     clean_image_open = cv2.morphologyEx(clean_image_skimage, cv2.MORPH_OPEN, element_open) #Conduct an erosion and dilation treatment to reduce noise or small hydrides, in this case
     
-    print("Similarity between skimage and opencv morphology processing: " + str(round(np.sum(clean_image_open == clean_image_skimage)/(len(image)*len(image[0]))*100, 1)) + "%")
+    clean_image_open_combined = cv2.morphologyEx(clean_image_skimage, cv2.MORPH_OPEN, element_open) #Combine the skimage and opencv treatments to see if it improves results.
     
+    
+    print("Similarity between skimage and opencv morphology processing: " + str(round(np.sum(clean_image_open == clean_image_skimage)/(len(image)*len(image[0]))*100, 1)) + "%")
+    print("Similarity between skimage and opencv morphology processing combined vs. skimage: " + str(round(np.sum(clean_image_open_combined == clean_image_skimage)/(len(image)*len(image[0]))*100, 1)) + "%")
     #Show that the opencv morphology further treats the image, as they look very similar qualitatively
     
-    func, plots = plt.subplots(1,3)
-    plots[2].imshow(clean_image_skimage, "gray") #Plot everything for comparison and verification
+    func, plots = plt.subplots(1,4)
+    plots[3].imshow(clean_image_open_combined, "gray") #Plot everything for comparison and verification
+    plots[2].imshow(clean_image_skimage, "gray") 
     plots[1].imshow(clean_image_open, "gray")
     plots[0].imshow(image_threshold, "gray") 
     
