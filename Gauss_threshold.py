@@ -25,13 +25,25 @@ while i <= 16: #16 images, i values up to and including 16
     
     print("Similarity between skimage and opencv morphology processing: " + str(round(np.sum(clean_image_open == clean_image_skimage)/(len(image)*len(image[0]))*100, 1)) + "%")
     print("Similarity between skimage and opencv morphology processing combined vs. skimage: " + str(round(np.sum(clean_image_open_combined == clean_image_skimage)/(len(image)*len(image[0]))*100, 1)) + "%")
-    #Show that the opencv morphology further treats the image, as they look very similar qualitatively
+    
+    #Display the fact that all the processed images are different, hence they all deserve separate testing and subsequent analysis.
     
     func, plots = plt.subplots(1,4)
+    
     plots[3].imshow(clean_image_open_combined, "gray") #Plot everything for comparison and verification
     plots[2].imshow(clean_image_skimage, "gray") 
     plots[1].imshow(clean_image_open, "gray")
     plots[0].imshow(image_threshold, "gray") 
+    
+    plots[3].axis("off") #Remove axes for increased clarity
+    plots[2].axis("off")
+    plots[1].axis("off")
+    plots[0].axis("off")
+    
+    plots[3].title.set_text("OpenCV + skimage") #Add titles for each processed image
+    plots[2].title.set_text("skimage")
+    plots[1].title.set_text("OpenCV")
+    plots[0].title.set_text("Gauss ")
     
     plt.show() #Plot the images one by one for verification
     i += 1 
