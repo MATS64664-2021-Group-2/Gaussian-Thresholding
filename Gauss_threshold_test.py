@@ -8,7 +8,7 @@ i = 1
 imagelist = []
 
 while i <= 16: #16 images, i values up to and including 16
-    image = cv2.imread(path + "/chu" + str(i) + ".jpg", 0) #Reads in the image. Do not change the original filenames.
+    image = cv2.imread(path + "chu" + str(i) + ".jpg", 0) #Reads in the image. Do not change the original filenames.
     image_threshold =  cv2.adaptiveThreshold(image, 255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 7, 1) #Conduct adaptive Gaussian Thresholding on the image
     
     image_threshold_inverted = np.invert(image_threshold)
