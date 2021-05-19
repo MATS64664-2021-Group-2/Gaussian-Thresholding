@@ -33,6 +33,8 @@ while i <= 16: #16 images, i values up to and including 16
     
 binary_value_list = [0,255]
 
+@pytest.mark.filterwarnings("ignore::UserWarning")
+
 for image in imagelist:
     for row in image:
         for pixel in row:
