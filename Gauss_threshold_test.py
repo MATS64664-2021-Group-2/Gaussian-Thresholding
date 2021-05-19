@@ -36,13 +36,13 @@ while i <= 16: #16 images, i values up to and including 16
         assert np.sum(clean_image_open_combined == clean_image_skimage)/(len(image)*len(image[0]))*100 <= 95, "OpenCV and skimage combined vs. skimage processing produced an image that is 95% similar. Processing may be redundant."
 
     def test_threshold_opencv_similarity():
-        assert np.sum(image_threshold_inverted == clean_image_open)/(len(image)*len(image[0]))*100 >= 95, "OpenCV processing has a 95% similarity to the original thresholded image. Processing may be redundant."
+        assert np.sum(image_threshold_inverted == clean_image_open)/(len(image)*len(image[0]))*100 <= 95, "OpenCV processing has a 95% similarity to the original thresholded image. Processing may be redundant."
     
     def test_threshold_skimage_similarity():
-        assert np.sum(image_threshold_inverted == clean_image_skimage)/(len(image)*len(image[0]))*100 >= 95, "skimage processing has a 95% similarity to the original thresholded image. Processing may be redundant."
+        assert np.sum(image_threshold_inverted == clean_image_skimage)/(len(image)*len(image[0]))*100 <= 95, "skimage processing has a 95% similarity to the original thresholded image. Processing may be redundant."
     
     def test_threshold_combined_similarity():
-        assert np.sum(image_threshold_inverted == clean_image_open_combined)/(len(image)*len(image[0]))*100 >= 95, "OpenCV and skimage processing has a 95% similarity to the original thresholded image. Processing may be redundant."
+        assert np.sum(image_threshold_inverted == clean_image_open_combined)/(len(image)*len(image[0]))*100 <= 95, "OpenCV and skimage processing has a 95% similarity to the original thresholded image. Processing may be redundant."
         
     
     i += 1 
