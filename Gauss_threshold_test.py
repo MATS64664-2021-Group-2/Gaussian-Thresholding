@@ -34,8 +34,8 @@ while i <= 16: #16 images, i values up to and including 16
 binary_value_list = [0,255]
 
 
-
-for image in imagelist:
-    for row in image:
-        for pixel in row:
-            assert pixel in binary_value_list, "Image is not fully binary, therefore not thresholded properly" #Tests if the image is fully binary or not.
+def test_binary():
+    for image in imagelist:
+        for row in image:
+            for pixel in row:
+                assert pixel in binary_value_list, "Image is not fully binary, therefore not thresholded properly" #Tests if the image is fully binary or not.
