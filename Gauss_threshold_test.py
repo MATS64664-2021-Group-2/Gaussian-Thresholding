@@ -39,3 +39,9 @@ def test_binary():
         for row in image:
             for pixel in row:
                 assert pixel in binary_value_list, "Image is not fully binary, therefore not thresholded properly" #Tests if the image is fully binary or not.
+                
+def test_separate_similarity():
+    assert np.sum(clean_image_open == clean_image_skimage)/(len(image)*len(image[0]))*100 >= 95, "OpenCV and skimage processing produced an image that is 95% similar. Processing may be redundant."
+    
+def test_combined_similarity():
+    assert np.sum(clean_image_open_combined == clean_image_skimage)/(len(image)*len(image[0]))*100 >= 95, "OpenCV and skimage combined vs. skimage processing produced an image that is 95% similar. Processing may be redundant."
