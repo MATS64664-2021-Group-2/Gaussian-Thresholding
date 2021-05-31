@@ -12,6 +12,8 @@ imagelist - list of thresholded images (list of numpy arrays)
 pure_image_list - list of unthresholded images (for subsequent plotting and comparison of results)
 """
 
+import cv2
+
 def Gaussian_thresholding(path):
     i = 1 #Integer to keep track of the used images in the while loop
     imagelist = [] #List to contain all the processed images   
