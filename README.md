@@ -20,10 +20,13 @@ len(images) - the number of files within the directory specified in "path". (Cou
 Thresholds images to binary for ease of processing.
 
 Input:
+
 path - directory path for images
 
 Outputs:
+
 imagelist - list of thresholded images (list of numpy arrays)
+
 pure_image_list - list of unthresholded images (for subsequent plotting and comparison of results)
 
 ## image_clean_up:
@@ -31,8 +34,11 @@ pure_image_list - list of unthresholded images (for subsequent plotting and comp
 Cleans up the images to display connected hydrides and plots them side-by-side for comparison.
 
 Inputs:
+
 image_list - list of thresholded (binary images).
+
 pure_image_list - list of non-thresholded images (for the sake of comparison).
 
 Output:
+
 None - (visual representation is enough in this case, as the results could not be used for further analysis).
