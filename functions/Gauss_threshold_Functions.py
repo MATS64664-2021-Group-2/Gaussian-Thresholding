@@ -77,11 +77,4 @@ path =  "./Hydrides/" #Enter the path of the directory, which contains all the i
 
 image_clean_up(Gaussian_thresholding(path)[0], Gaussian_thresholding(path)[1]) #Run the function to process the images.
     
-binary_value_list = [0,255] #Value list to test the thresholded images.
 
-def test_binary(): #Checks whether each pixel of the image is either fully white or fully black.
-    for image in Gaussian_thresholding(path)[0]:
-        for row in image:
-            for pixel in row:
-                assert pixel in binary_value_list, "Image is not fully binary, therefore not thresholded properly"
-    
